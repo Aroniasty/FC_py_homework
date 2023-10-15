@@ -12,5 +12,34 @@
 #    - Która paczka miała najwięcej "pustych" kilogramów, jaki to był wynik
 # Program powinien kończyć się z błędem, gdy element dodawany ma więcej niż 10kg, lub mniej niż 1 kg i nie był dokładnie równy 0.
 
-maksymalna_waga_paczki == 20
-element = int(input("Podaj wage przedmiotu (1-10kg): "))
+print("Witaj w programie do obsługi ładowarki paczek.\n")
+
+koniec_programu = False
+
+limit_wagi_paczki = 20 # <=20kg
+licznik_paczek = 0
+waga_paczki = 0 # <=20kg
+licznik_elementow = 0
+licznik_kg = 0
+licznik_pustch_kg = 0
+najciezsza_paczka = 0
+
+
+
+while waga_paczki <= limit_wagi_paczki:
+    print("Podaj wagę elementu (1-10kg): ")
+    waga_elementu = int(input())
+    if waga_elementu == 0:
+        print("Program zakończył działanie.\nOto Twoje zamówienie: ")
+        print(f" - Liczba wysłanych paczek: {licznik_paczek} szt.")
+        print(f" - Całkowita waga paczek: {licznik_kg} kg")
+        print(f" - Niewykorzystane: {licznik_pustch_kg} kg")
+        print(f" - Najcięższa paczka: {najciezsza_paczka} kg")
+        break
+    if waga_elementu < 1 or waga_elementu > 10:
+        print("Nieprawidłowa waga elmentu.")
+        continue
+    waga_paczki += waga_elementu
+    print(f"Całkowita waga paczki: {waga_paczki} kg")
+else:
+    print("Limit wagi paczki osiągnięty.")
