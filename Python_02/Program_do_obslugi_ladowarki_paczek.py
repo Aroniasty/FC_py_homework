@@ -33,24 +33,7 @@ paczka_07 = False
 paczka_08 = False
 paczka_09 = False
 paczka_10 = False
-#
-# while waga_paczki <= limit_wagi_paczki:
-#     print("Podaj wagę elementu (1-10kg): ")
-#     waga_elementu = int(input())
-#     if waga_elementu == 0:
-#         print("Program zakończył działanie.\nPodsumowanie: ")
-#         print(f" - Liczba wysłanych paczek: {licznik_paczek} szt.")
-#         print(f" - Całkowita waga paczek: {licznik_kg} kg")
-#         print(f" - Niewykorzystane: {licznik_pustch_kg} kg")
-#         print(f" - Najcięższa paczka: {najciezsza_paczka} kg")
-#         break
-#     if waga_elementu < 1 or waga_elementu > 10:
-#         print("Nieprawidłowa waga elmentu.")
-#         continue
-#     waga_paczki += waga_elementu
-#     print(f"Całkowita waga paczki: {waga_paczki} kg")
-# else:
-#     print("Limit wagi paczki osiągnięty.")
+
 
 while not koniec_programu:
     print("Podaj co chcesz zrobić.\n"
@@ -58,12 +41,12 @@ while not koniec_programu:
           "2. Zakończ program i wyświetl podsumowanie.")
     wybor_menu = input("Wybierz opcje: ")
     if int(wybor_menu) == 1:
-        while int(waga_paczki) <= 20: # ustawić nieprzekraczalny limit
+        while int(waga_paczki) <= 20:  # ustawić nieprzekraczalny limit
             waga_elementu = input("Podaj wagę elementu (1-10kg): ")
             if int(waga_elementu) == 0:
                 print("Zakończono pakowanie.")
                 break
-            if not int(waga_elementu) in range (1,11) or int(waga_paczki) >=20:
+            if not int(waga_elementu) in range (1,11):
                 print("Nieprawidłowa waga elmentu.")
                 continue
             waga_paczki += int(waga_elementu)
@@ -71,7 +54,7 @@ while not koniec_programu:
         else: #if int(waga_paczki) == 20:
             print("Osiągnięto limit wagi paczki")
             break
-# program wychodzi do opcji i nie można już dodawać elemetów do paczki.
+# program wychodzi do opcji i nie można już dodawać elementów do paczki.
 
     elif int(wybor_menu) == 2:
         koniec_programu = True
