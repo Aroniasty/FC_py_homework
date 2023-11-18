@@ -1,24 +1,49 @@
-# Napisz program (accountant.py), który będzie rejestrował operacje na koncie firmy i stan magazynu.
-# Program jest wywoływany w następujący sposób:
-# a) python accountant.py saldo <int wartosc> <str komentarz>
-# b) python accountant.py sprzedaż <str identyfikator produktu> <int cena> <int liczba sprzedanych>
-# c) python accountant.py zakup <str identyfikator produktu> <int cena> <int liczba zakupionych>
-# d) python accountant.py konto
-# e) python accountant.py magazyn <str identyfikator produktu 1> <str identyfikator produktu 2> <str identyfikator produktu 3> ...
-# f) python accountant.py przegląd <indeks początkowy> <indeks końcowy>
-#
-# Działanie programu w krokach 4 i 5 będzie zależne od argumentów podanych przy wywołaniu programu.
-# Niezależnie od trybu program zawsze będzie rozpoczynał działanie od wykonania kroku nr 1.
-# 1. Program pobierze rodzaj akcji (ciąg znaków). Dozwolone akcje to "saldo", zakup", "sprzedaż". Jeśli użytkownik wprowadzi inną akcję, program powinien zwrócić błąd i zakończyć działanie.
-# saldo: program pobiera dwie linie: zmiana na koncie firmy wyrażona w groszach (int) (może być ujemna) oraz komentarz do zmiany (str)
-# zakup: program pobiera trzy linie: identyfikator produktu (str), cena jednostkowa (int) i liczba sztuk (int). Program odejmuje z salda cenę jednostkową pomnożoną przez liczbę sztuk. Jeśli saldo po zmianie jest ujemne, cena jest ujemna bądź liczba sztuk jest mniejsza od zero program zwraca błąd. Program podnosi stan magazynowy zakupionego towaru
-# sprzedaż: program pobiera trzy linie: identyfikator produktu (str), cena jednostkowa (int), liczba sztuk (int). Program dodaje do salda cenę jednostkową pomnożoną razy liczbę sztuk. Jeśli na magazynie nie ma wystarczającej liczby sztuk, cena jest ujemna bądź liczba sztuk sprzedanych jest mniejsza od zero program zwraca błąd. Program obniża stan magazynowy zakupionego towaru.
-# stop: program przechodzi do kroku 4
-# 2. Program zapamiętuje każdą wprowadzoną linię
-# 3. Program wraca do kroku 1
-# 4. W zależności od wywołania:
-# a) b) c) program dodaje do historii podane argumenty tak, jakby miały być wprowadzone przez standardowe wejście, przechodzi do kroku 5
-# d) program wypisuje na standardowe wyjście stan konta po wszystkich akcjach, kończy działanie
-# e) program wypisuje stany magazynowe dla podanych produktów, w formacie: <id produktu>: <stan> w nowych liniach i kończy działanie:
-# f) Program wypisuje wszystkie akcje zapisane pod indeksami w zakresie [od, do] (zakresy włącznie)
-# 5. Program wypisuje wszystkie podane parametry w formie identycznej, w jakiej je pobrał.
+import sys
+
+'''
+uruchamianie
+python accountant.py saldo 1000 "dodano 1000 zl do konta"
+'''
+saldo = 10000
+magazyn = [
+    {
+        "id": 1,
+        "nazwa": "lodka",
+        "ilosc": 5,
+        "cena jednostkowa": 1000
+    },
+    {
+        "id": 2,
+        "nazwa": "auto",
+        "ilosc": 4,
+        "cena jednostkowa": 500
+    }
+]
+
+historia = ["Utworzylem magazyn", "Zakupilem 1 lodke za 1000 zl", "Kupilem auto za 500 zl", "Sprzedalem 2 auta za 1000 zl"]
+print(len(magazyn))
+argumenty = sys.argv
+for index, wartosc in enumerate(argumenty):
+    if index == 1:
+        operacja = wartosc
+
+#skorzystac z instrukcji warunkowych
+
+if operacja == "saldo":         # <int wartosc> <str komentarz>
+    saldo += int(sys.argv[2])
+    historia.append(sys.argv[3])
+elif operacja == "sprzedaż":    # <str identyfikator produktu> <int cena> <int liczba sprzedanych>
+    print(f"brak funkcji")
+    pass
+elif operacja == "zakup":       # <str identyfikator produktu> <int cena> <int liczba zakupionych>
+    print(f"brak funkcji")
+    pass
+elif operacja == "konto":       #
+    print(f"brak funkcji")
+    pass
+elif operacja == "magazyn":     # <str identyfikator produktu 1> <str identyfikator produktu 2> <str identyfikator produktu 3> ...
+    print(f"brak funkcji")
+    pass
+elif operacja == "przegląd":    # <indeks początkowy> <indeks końcowy>
+    print(historia[0:3])
+print(saldo)
