@@ -20,8 +20,10 @@ magazyn = [
     }
 ]
 
+print(magazyn)      # jak pokazać listę bez etykiet typ "id", tylko wartości
+
 historia = ["Utworzylem magazyn", "Zakupilem 1 lodke za 1000 zl", "Kupilem auto za 500 zl", "Sprzedalem 2 auta za 1000 zl"]
-print(len(magazyn))
+print(f"Konto: {len(magazyn)}")
 argumenty = sys.argv
 for index, wartosc in enumerate(argumenty):
     if index == 1:
@@ -32,18 +34,36 @@ for index, wartosc in enumerate(argumenty):
 if operacja == "saldo":         # <int wartosc> <str komentarz>
     saldo += int(sys.argv[2])
     historia.append(sys.argv[3])
+
+#wprowadzić sprzedaż
 elif operacja == "sprzedaż":    # <str identyfikator produktu> <int cena> <int liczba sprzedanych>
-    print(f"brak funkcji")
+    saldo += int(sys.argv[2]) * int(sys.argv[3])
+    print(f"w trakcie")
     pass
-elif operacja == "zakup":       # <str identyfikator produktu> <int cena> <int liczba zakupionych>
-    print(f"brak funkcji")
-    pass
-elif operacja == "konto":       #
-    print(f"brak funkcji")
-    pass
+
+
+elif operacja == "zakup":       # <str identyfikator produktu> <int cena> <int liczba zakupionych> jak dodać do listy w obecnej formie
+    kwota_zakupu = int(sys.argv[3]) * int(sys.argv[4])
+    id_produktu = int(sys.argv[2])
+    if saldo - kwota_zakupu >= 0:
+        saldo -= kwota_zakupu
+        for przedmiot in magazyn:
+            if id_produktu == przedmiot.get("id"):
+                przedmiot["ilosc"] += int(sys.argv[4])
+        print(magazyn)
+    else:
+        print(f"Niestety nie masz środków na zakup.")
+elif operacja == "konto":
+    print(saldo)
 elif operacja == "magazyn":     # <str identyfikator produktu 1> <str identyfikator produktu 2> <str identyfikator produktu 3> ...
-    print(f"brak funkcji")
+    idetyfikatory_produktow = sys.argv[2:]
+    for przedmiot in magazyn:
+        if str(przedmiot.get("id")) in idetyfikatory_produktow:
+            print(f"{przedmiot.get('id')}: {przedmiot.get('ilosc')}")
     pass
 elif operacja == "przegląd":    # <indeks początkowy> <indeks końcowy>
-    print(historia[0:3])
-print(saldo)
+    print(historia[int(sys.argv[2]):int(sys.argv[3])])
+else:
+    print(f"Błąd. Brak funkcji")
+
+print(f"Obecne saldo wynosi: {saldo}")
