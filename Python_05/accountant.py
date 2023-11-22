@@ -17,10 +17,14 @@ magazyn = [
         "nazwa": "auto",
         "ilosc": 4,
         "cena jednostkowa": 500
+    },
+    {
+        "id": 3,
+        "nazwa": "motor",
+        "ilosc": 1,
+        "cena jednostkowa": 250
     }
 ]
-
-print(magazyn)      # jak pokazać listę bez etykiet typ "id", tylko wartości
 
 historia = ["Utworzylem magazyn", "Zakupilem 1 lodke za 1000 zl", "Kupilem auto za 500 zl", "Sprzedalem 2 auta za 1000 zl"]
 print(f"Konto: {len(magazyn)}")
@@ -29,18 +33,29 @@ for index, wartosc in enumerate(argumenty):
     if index == 1:
         operacja = wartosc
 
-#skorzystac z instrukcji warunkowych
-
 if operacja == "saldo":         # <int wartosc> <str komentarz>
     saldo += int(sys.argv[2])
     historia.append(sys.argv[3])
 
 #wprowadzić sprzedaż
 elif operacja == "sprzedaż":    # <str identyfikator produktu> <int cena> <int liczba sprzedanych>
-    saldo += int(sys.argv[2]) * int(sys.argv[3])
-    print(f"w trakcie")
-    pass
-
+    kwota_sprzedazy = int(sys.argv[3]) * int(sys.argv[4])
+    id_produktu = int(sys.argv[2])
+    for przedmiot in magazyn:
+        if id_produktu == przedmiot.get("id"):
+            if int(sys.argv[4]) <= przedmiot["ilosc"]:
+                przedmiot["ilosc"] -= int(sys.argv[4])
+            else:
+                print(f"Niestety nie masz takiej ilości przedmiotów.\n")
+            # przedmiot["ilosc"] -= int(sys.argv[4])
+            # if przedmiot["ilosc"] <= 0:
+                # print(f"Niestety nie masz takiej ilości przedmiotów.")
+            #     przedmiot["ilosc"] -= int(sys.argv[4])
+            # else:
+            #     print(f"Niestety nie masz takiej ilości przedmiotów.")
+            # if przedmiot["ilosc"] < 0:
+            #     przedmiot["ilosc"] -= int(sys.argv[4])
+    print(f"Stan magazynu: {magazyn}")
 
 elif operacja == "zakup":       # <str identyfikator produktu> <int cena> <int liczba zakupionych> jak dodać do listy w obecnej formie
     kwota_zakupu = int(sys.argv[3]) * int(sys.argv[4])
