@@ -45,16 +45,9 @@ elif operacja == "sprzedaż":    # <str identyfikator produktu> <int cena> <int 
         if id_produktu == przedmiot.get("id"):
             if int(sys.argv[4]) <= przedmiot["ilosc"]:
                 przedmiot["ilosc"] -= int(sys.argv[4])
+                saldo += kwota_sprzedazy
             else:
                 print(f"Niestety nie masz takiej ilości przedmiotów.\n")
-            # przedmiot["ilosc"] -= int(sys.argv[4])
-            # if przedmiot["ilosc"] <= 0:
-                # print(f"Niestety nie masz takiej ilości przedmiotów.")
-            #     przedmiot["ilosc"] -= int(sys.argv[4])
-            # else:
-            #     print(f"Niestety nie masz takiej ilości przedmiotów.")
-            # if przedmiot["ilosc"] < 0:
-            #     przedmiot["ilosc"] -= int(sys.argv[4])
     print(f"Stan magazynu: {magazyn}")
 
 elif operacja == "zakup":       # <str identyfikator produktu> <int cena> <int liczba zakupionych> jak dodać do listy w obecnej formie
@@ -67,7 +60,7 @@ elif operacja == "zakup":       # <str identyfikator produktu> <int cena> <int l
                 przedmiot["ilosc"] += int(sys.argv[4])
         print(magazyn)
     else:
-        print(f"Niestety nie masz środków na zakup.")
+        print(f"Niestety nie masz środków na zakup.\n")
 elif operacja == "konto":
     print(saldo)
 elif operacja == "magazyn":     # <str identyfikator produktu 1> <str identyfikator produktu 2> <str identyfikator produktu 3> ...
