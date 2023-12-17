@@ -19,6 +19,20 @@ class Uczen:
         self.nazwisko = nazwisko
         self.klasa = klasa
 
+class Nauczyciel:
+    def __init__(self, imie, nazwisko, klasy, przedmiot):
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.klasy = klasy
+        self.przedmiot = przedmiot
+
+class Wychowawca:
+    def __init__(self, imie, nazwisko, klasy):
+        self.imie = imie
+        self.nazwisko = nazwisko
+        self.klasy = klasy
+
+
 while not koniec_programu:
     wybrana_opcja = input("1. Dodaj ucznia\n2. Dodaj nauczyciela\n3. Dodaj wychowawce\n4. Koniec\n")
     if wybrana_opcja == "1":
@@ -38,6 +52,14 @@ while not koniec_programu:
                 pusty_input = True
     elif wybrana_opcja == "3":      #dodać wychowawcę
         print("Dodajemy wychowawce")
+        pusty_input = False
+        while not pusty_input:
+            numer_klasy = input("Podaj kolejna klase")
+            imie_input = input("Podaj imię nauczyciela: ")
+            nazwisko_input = input("Podaj nazwisko nauczyciela: ")
+            if numer_klasy == "":
+                pusty_input = True
+
 
     elif wybrana_opcja == "4":
         print("koniec - wykonujemy operacje z argumentow systemowych")
