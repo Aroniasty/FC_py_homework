@@ -23,4 +23,20 @@ jeśli phrase to nazwa klasy: program wypisze wychowawcę i uczniów w klasie
 jeśli phrase to wychowawca: wypisz wszystkich uczniów, których prowadzi wychowawca
 jeśli phrase to nauczyciel: wypisz wychowawców wszystkich klas, z którym ma zajęcia nauczyciel
 jeśli phrase to uczeń: wypisz wszystkie lekcje, które ma uczeń i nauczycieli, którzy je prowadzą
+
+kolejne kroki
+Nauczyciel: imie, nazwisko
+1. znalezc nauczyciela na liscie nauczycieli
+2. przypisac do zmiennej te klasy gdzie uczy
+3. przzeszukac liste wychowawcow
+4. dodac wychowace do listy wychowawcow klas
+5. wyprinotwac tych wychowacow
+
+Uczen: imie, nazwisko
+1. znalezc ucznia na liscie uczniow
+2. przypisac do zmiennej klase ucznia
+3. przeszukac liste nauczycieli
+4. jezeli nauczyciel ma zajecia z ta klasa to dodac do listy słownik {nauczyciel.imie: nauczyciel.przedmiot}
+5. wyprinotwac liste słowników
+
 '''
