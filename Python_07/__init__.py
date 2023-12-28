@@ -9,7 +9,8 @@ Mamy trzy typy użytkowników:
 
 Napisz program, który ze standardowego wyjścia pobierze dane w następujący sposób:
 
-    Pobierze typ użytkownika: (uczeń, nauczyciel, wychowawca, koniec) Jeśli pobrano koniec, przejdź do kroku 5, w przeciwnym przypadku pobierz imię i nazwisko i przejdź do kroku 2,3, lub 4 (w zależności od pobranego typu użytkownika)
+    Pobierze typ użytkownika: (uczeń, nauczyciel, wychowawca, koniec) Jeśli pobrano koniec,
+    przejdź do kroku 5, w przeciwnym przypadku pobierz imię i nazwisko i przejdź do kroku 2,3, lub 4 (w zależności od pobranego typu użytkownika)
     Jeśli typ użytkownika to uczeń, pobierz jedną linię - będzie to nazwa klasy (np. 3C), przejdź do kroku 1
     Jeśli typ użytkownika to nauczyciel, pobierz 1 linię - nazwę przedmiotu prowadzonego, a następnie w nowych liniach nazwy klas, aż do otrzymania pustej linii. Przejdź do korku 1
     Jeśli typ użytkownika to wychowawca, pobieraj w nowych liniach nazwy klas, które prowadzi wychowawca, aż do momentu gdy użytkownik wprowadzi pustą linię, przejdź do kroku 1

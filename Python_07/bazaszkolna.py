@@ -11,7 +11,7 @@ lista_wychowawcow = []
 
 def znajdz_uzytkownika_w_nauczycielach(dane_uzytkownika):
     print(argumenty)
-    print("Kod do znalezienia danych z argumentow systemowych wsrod uczniow")
+    print("Kod do znalezienia danych z argumentów systemowych wśród uczniów")
 
 class Uczen:
     def __init__(self, imie, nazwisko, klasa):
@@ -34,36 +34,40 @@ class Wychowawca:
 
 
 while not koniec_programu:
-    wybrana_opcja = input("1. Dodaj ucznia\n2. Dodaj nauczyciela\n3. Dodaj wychowawce\n4. Koniec\n")
+    wybrana_opcja = input("1. Dodaj ucznia\n2. Dodaj nauczyciela\n3. Dodaj wychowawcę\n4. Koniec\n")
+
     if wybrana_opcja == "1":
-        imie_input = input("Podaj imie ucznia: ")
+        imie_input = input("Podaj imię ucznia: ")
         nazwisko_input = input("Podaj nazwisko ucznia: ")
-        klasa_input = input("Podaj klase ucznia: ")
+        klasa_input = input("Podaj klasę ucznia: ")
         nowy_uczen = Uczen(imie=imie_input, nazwisko=nazwisko_input, klasa=klasa_input)
+        lista_uczniow.append(nowy_uczen)
 
     elif wybrana_opcja == "2":
-        print("Dodajemy nauczyciela")
+        print("Dodajemy nauczyciela") #nazwę przedmiotu prowadzonego, nazwy klas
         pusty_input = False
         while not pusty_input:
-            numer_klasy = input("Podaj kolejna klase")
+            numer_klasy = input("Podaj kolejna klasę")
             imie_input = input("Podaj imię nauczyciela: ")
             nazwisko_input = input("Podaj nazwisko nauczyciela: ")
-            if numer_klasy == "":
-                pusty_input = True
-    elif wybrana_opcja == "3":      #dodać wychowawcę
-        print("Dodajemy wychowawce")
-        pusty_input = False
-        while not pusty_input:
-            numer_klasy = input("Podaj kolejna klase")
-            imie_input = input("Podaj imię nauczyciela: ")
-            nazwisko_input = input("Podaj nazwisko nauczyciela: ")
+            przedmiot_input = input("Podaj przedmiot: ")
             if numer_klasy == "":
                 pusty_input = True
 
+    elif wybrana_opcja == "3":      #dodać wychowawcę
+        print("Dodajemy wychowawcę") #nazwy klas
+        pusty_input = False
+        while not pusty_input:
+            numer_klasy = input("Podaj kolejna klasę: ")
+            imie_input = input("Podaj imię nauczyciela: ")
+            nazwisko_input = input("Podaj nazwisko nauczyciela: ")
+            if numer_klasy == "":
+                pusty_input = True
 
     elif wybrana_opcja == "4":
-        print("koniec - wykonujemy operacje z argumentow systemowych")
+        print("koniec - wykonujemy operacje z argumentów systemowych")
         print(argumenty)
         dane_uzytkownika = argumenty[0]
         znajdz_uzytkownika_w_nauczycielach(dane_uzytkownika)
         koniec_programu = True
+
