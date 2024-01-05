@@ -24,15 +24,13 @@ def about():
 
 
 class Data(db.Model):
-   id=db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    state = db.Column(db.String, nullable=False)
+    areaname = db.Column(db.String, nullable=False)
+    total_cost = db.Column(db.Integer, nullable=False, default=0)
+    median_family_income = db.Column(db.Integer, nullable=False, default=0)
 
-    # """
-    # id
-    # state
-    # areaname
-    # total_cost
-    # median_family_income
-    # """
+
 # with app.app_context():
     # db.create_all() /// odkomentowac jak bedzie gotowa klasa
     # kod do obsługi tabeli

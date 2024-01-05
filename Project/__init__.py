@@ -14,8 +14,8 @@ Flask
 Bazadanych SQLite
 HTML/CSS do napisania templatek
 
-1. Stworzenie tabeli odzwierciedlajacej to co mamy w pliku csv
+1. Stworzenie tabeli odzwierciedlającej, to co mamy w pliku csv
 2. W app context zrobienie db.creata_all() i załadowanie wszystkich danych z pliku
-3. Srworzenie endpointow
+3. Stworzenie endpointow
 
 '''
