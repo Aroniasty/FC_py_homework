@@ -1,9 +1,18 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Lista rozwijana z danymi z bazy danych</title>-->
+<!--</head>-->
+
 {% extends "base.html" %}
 
 {% block content %}
- <h1>Home Page</h1>
-<br>
-<div>
+
+<body>
+    <h1>Lista rozwijana z danymi z bazy danych</h1>
+
     <form action="/result" method="POST">
         <label for="dropdown">Wybierz stan:</label>
         <select id="dropdown" name="state">
@@ -13,12 +22,6 @@
         </select>
         <button type="submit">Pokaż wyniki</button>
     </form>
-</div>
-<br>
-<div>
-    <button type="submit">Pokaż najbardziej ekonomiczne miasto w stanie</button>
-    <button type="submit">Pokaż 3 miasta o najwyższych kosztach życia</button>
-    <button type="submit">Sprawdź średni koszt życia</button>
-</div>
-<br>
+</body>
+</html>
 {% endblock %}
