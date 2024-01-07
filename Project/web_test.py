@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cost_of_living_us.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project.db'
 db = SQLAlchemy(app)
 
 class cost_of_living_us(db.Model):
@@ -20,9 +20,9 @@ def get_total_cost_for_state(selected_state):
     return total_cost
 
 @app.route('/')
-def index():
+def main():
     data = get_unique_states()
-    return render_template('index.html', data=data)
+    return render_template('main.html', data=data)
 
 @app.route('/result', methods=['POST'])
 def result():
