@@ -2,4 +2,13 @@
 
 {% block content %}
  <h1>Miasta o najwyższych kosztach życia:</h1>
+<br>
+<!--    <p>Wybrany stan: {{ selected_state }}</p>-->
+<!--    <p>Całkowity koszt życia: {{ most_expensive }}</p>-->
+    <ul>
+        {% for city in cities %}
+            <li>{{ city.state }} - Całkowity koszt życia: {{ city.total_cost }}</li>
+        {% endfor %}
+    </ul>
+<br>
 {% endblock %}

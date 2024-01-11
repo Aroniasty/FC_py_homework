@@ -3,16 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 import csv
 
 def read_data_from_csv():
-    # with open("cost_of_living_us.csv", "r") as csv_file:
     data = []
+    # with open("cost_of_living_us.csv", "r") as csv_file:
     with open("csv_test.csv", "r") as csv_file:
         csv_reader = csv.reader(csv_file)
         next(csv_reader)
         for line in csv_reader:
             data.append(line)
     return data
-
-            # print(line)
+             # print(line)
     #     for row in csv_reader:
     #          data_row = Data(
     #             state=row[1],

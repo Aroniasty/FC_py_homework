@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
- <h1>Home Page</h1>
+<h1 xmlns="http://www.w3.org/1999/html">Home Page</h1>
 <br>
 <div>
     <form action="/result" method="POST">
@@ -17,7 +17,9 @@
 <br>
 <div>
     <button type="submit">Pokaż najbardziej ekonomiczne miasto w stanie</button>
-    <button type="submit">Pokaż 3 miasta o najwyższych kosztach życia</button>
+    <form action="/most_expensive" method="POST">
+        <button type="submit">Pokaż 3 miasta o najwyższych kosztach życia</button>
+    </form>
     <button type="submit">Sprawdź średni koszt życia</button>
 </div>
 <br>

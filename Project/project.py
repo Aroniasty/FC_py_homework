@@ -5,6 +5,7 @@ from csv_reader import read_data_from_csv
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///project.db"
+# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test.db"
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -31,9 +32,15 @@ def result():
 def about():
     return render_template("about.html")
 
-# @app.route('/most_expensive')
-# def most_expensive():
-#     return render_template("most_expensive.html")
+@app.route('/most_expensive')
+def most_expensive():
+    city = get_lowest_cost()
+    return render_template("most_expensive.html", city=city)
+
+@app.route('/lowest_cost')
+def lowest_cost():
+    return render_template("lowest_cost.html")
+
 
 # @app.route('/total_cost')
 # def total_cost():
@@ -55,6 +62,18 @@ def get_unique_states():
 def get_total_cost_for_state(selected_state):
     total_cost = cost_of_living_us.query.filter_by(state=selected_state).first().total_cost
     return total_cost
+
+def get_most_expensive():
+    most_expensive = cost_of_living_us.query.order_by(cost_of_living_us.db.total_cost.desc()).limit(3).all()
+    return most_expensive
+
+def get_lowest_cost():
+    lowest_cost_city = cost_of_living_us.query.order_by(cost_of_living_us.total_cost).first()
+    return lowest_cost_city
+
+
+
+
 
 
 # with (open("cost_of_living_us.csv") as csv_file):
@@ -94,5 +113,4 @@ if __name__ == "__main__":
         # db.session.commit()
         # kod do obsługi tabeli
     app.run(debug=True)
-
 
