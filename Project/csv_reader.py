@@ -9,7 +9,8 @@ def read_data_from_csv():
         csv_reader = csv.reader(csv_file)
         next(csv_reader)
         for line in csv_reader:
-            data.append(line)
+            rounded_line = [round(float(value), 2) for value in line]
+            data.append(rounded_line)
     return data
              # print(line)
     #     for row in csv_reader:

@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 xmlns="http://www.w3.org/1999/html">Home Page</h1>
+<!--<h1 xmlns="http://www.w3.org/1999/html">Home Page</h1>-->
+<h1>Home Page</h1>
+<link href="style.css" rel="stylesheet">
 <br>
-<div>
-    <form action="/result" method="POST">
+<div class="container">
+    <form action="/total_cost" method="POST">
         <label for="dropdown">Wybierz stan:</label>
         <select id="dropdown" name="state">
             {% for row in data %}
                 <option value="{{ row.state }}">{{ row.state }}</option>
             {% endfor %}
         </select>
-        <button type="submit">Pokaż wyniki</button>
+        <div>
+            <br>
+            <button type="submit">Całkowity koszt życia</button>
+        </div>
     </form>
 </div>
 <br>

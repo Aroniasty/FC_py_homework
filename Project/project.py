@@ -6,46 +6,36 @@ from csv_reader import read_data_from_csv
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///project.db"
 # app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test.db"
+# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test_2.db"
+# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///cost_of_living_us.db"
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# @app.route("/")
-# def home_page():
-#     if request.method == "GET":
-#         return render_template("main.html")
-#     else:
-#         print(results)
-#         return redirect(url_for("results"))
 
 @app.route('/')
 def main():
     data = get_unique_states()
     return render_template('main.html', data=data)
 
-@app.route('/result', methods=['POST'])
+@app.route('/total_cost', methods=['POST'])
 def result():
     selected_state = request.form.get('state')
     total_cost = get_total_cost_for_state(selected_state)
-    return render_template('result.html', selected_state=selected_state, total_cost=total_cost)
-
-@app.route('/about')
-def about():
-    return render_template("about.html")
+# pokazuje tylko 1 wpis na liście
+    return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost)
 
 @app.route('/most_expensive')
 def most_expensive():
     city = get_lowest_cost()
     return render_template("most_expensive.html", city=city)
 
-@app.route('/lowest_cost')
-def lowest_cost():
-    return render_template("lowest_cost.html")
+# @app.route('/lowest_cost')
+# def lowest_cost():
+#     return render_template("lowest_cost.html")
 
-
-# @app.route('/total_cost')
-# def total_cost():
-#     return render_template("total_cost.html")
-
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
 class cost_of_living_us(db.Model):
     __tablename__ = "cost_of_living_us"
@@ -72,10 +62,6 @@ def get_lowest_cost():
     return lowest_cost_city
 
 
-
-
-
-
 # with (open("cost_of_living_us.csv") as csv_file):
 #     csv_reader = csv.reader(csv_file)
 #     header = next(csv_reader)
@@ -95,15 +81,17 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
         data = db.session.query(cost_of_living_us).distinct().all()
-        if len(data) == 0:
+        if len(data) == 1000:
             data_from_csv = read_data_from_csv()
             for row in data_from_csv:
                 data_row = cost_of_living_us(
                     state=row[1],
                     areaname=row[3],
                     total_cost=float(row[13]),
+                    # total_cost=round(float(row[13]), 2),
                     # nie działa float
                     median_family_income=float(row[14])
+                    # median_family_income=round(float(row[14]), 2)
                 )
                 db.session.add(data_row)
             db.session.commit()

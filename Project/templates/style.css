@@ -1,0 +1,15 @@
+h1 {
+    color: rgb(60, 179, 113);
+}
+
+body {
+    margin:0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.container {
+    margin: auto;
+    padding 200px 100px 150px 75px;
+    border: 1px solid black;
+}

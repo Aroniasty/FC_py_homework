@@ -28,7 +28,7 @@ def main():
 def result():
     selected_state = request.form.get('state')
     total_cost = get_total_cost_for_state(selected_state)
-    return render_template('result.html', selected_state=selected_state, total_cost=total_cost)
+    return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost)
 
 @app.route('/about')
 def about():
