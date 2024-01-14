@@ -9,7 +9,11 @@ body {
 }
 
 .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    padding 200px 100px 150px 75px;
+    padding 20px;
     border: 1px solid black;
+    height: 20hv
 }

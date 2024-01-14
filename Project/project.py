@@ -15,23 +15,31 @@ db = SQLAlchemy(app)
 @app.route('/')
 def main():
     data = get_unique_states()
+    # nie stosuje ustawień z css i base.html
     return render_template('main.html', data=data)
 
 @app.route('/total_cost', methods=['POST'])
 def result():
     selected_state = request.form.get('state')
     total_cost = get_total_cost_for_state(selected_state)
-# pokazuje tylko 1 wpis na liście
+    # pokazuje tylko 1 wartość na liście z wybranego stanu
     return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost)
 
-@app.route('/most_expensive')
+@app.route('/most_expensive', methods=['POST'])
 def most_expensive():
-    city = get_lowest_cost()
-    return render_template("most_expensive.html", city=city)
+    selected_state = request.form.get('state')
+    most_expensive = get_most_expensive(selected_state)
+    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive)
 
-# @app.route('/lowest_cost')
-# def lowest_cost():
-#     return render_template("lowest_cost.html")
+@app.route('/lowest_cost', methods=['POST'])
+def lowest_cost():
+    selected_state = request.form.get('state')
+    lowest_cost = get_lowest_cost(selected_state)
+    return render_template("lowest_cost.html", selected_state=selected_state, lowest_cost=lowest_cost)
+
+@app.route('/average_cost')
+def average_cost():
+    return render_template("average_cost.html")
 
 @app.route('/about')
 def about():
@@ -53,13 +61,18 @@ def get_total_cost_for_state(selected_state):
     total_cost = cost_of_living_us.query.filter_by(state=selected_state).first().total_cost
     return total_cost
 
-def get_most_expensive():
-    most_expensive = cost_of_living_us.query.order_by(cost_of_living_us.db.total_cost.desc()).limit(3).all()
+def get_most_expensive(selected_state):
+    most_expensive = cost_of_living_us.query.filter_by(state=selected_state).order_by(cost_of_living_us.total_cost.desc()).limit(3).all()
     return most_expensive
 
-def get_lowest_cost():
-    lowest_cost_city = cost_of_living_us.query.order_by(cost_of_living_us.total_cost).first()
+def get_lowest_cost(selected_state):
+    lowest_cost_city = cost_of_living_us.query.filter_by(state=selected_state).last().total_cost
     return lowest_cost_city
+
+
+# def get_average_cost():
+#     average_cost = cost_of_living_us.query.avg()
+#     return average_cost
 
 
 # with (open("cost_of_living_us.csv") as csv_file):

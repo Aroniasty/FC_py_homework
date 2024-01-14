@@ -6,26 +6,35 @@
 <link href="style.css" rel="stylesheet">
 <br>
 <div class="container">
-    <form action="/total_cost" method="POST">
+<!--    <form action="/total_cost" method="POST">-->
+<!--    jak zrobić, żeby każdy przycisk pobierał dane z jednej list?-->
+    <form method="POST">
         <label for="dropdown">Wybierz stan:</label>
         <select id="dropdown" name="state">
             {% for row in data %}
                 <option value="{{ row.state }}">{{ row.state }}</option>
             {% endfor %}
         </select>
-        <div>
-            <br>
-            <button type="submit">Całkowity koszt życia</button>
-        </div>
+<br>
+        <button type="submit" formaction="total_cost">Całkowity koszt życia</button>
+        <button type="submit" formaction="most_expensive">Pokaż 3 miasta o najwyższych kosztach życia</button>
+        <button type="submit" formaction="lowest_cost">Pokaż najbardziej ekonomiczne miasto w stanie</button>
+        <button type="submit" formaction="average_cost">Sprawdź średni koszt życia</button>
     </form>
 </div>
-<br>
+            <br>
 <div>
-    <button type="submit">Pokaż najbardziej ekonomiczne miasto w stanie</button>
-    <form action="/most_expensive" method="POST">
-        <button type="submit">Pokaż 3 miasta o najwyższych kosztach życia</button>
-    </form>
-    <button type="submit">Sprawdź średni koszt życia</button>
+<!--        <button type="submit">Całkowity koszt życia</button>-->
+<!--    </form>-->
+<!--    <form action="/most_expensive" method="POST">-->
+<!--        <button type="submit">Pokaż 3 miasta o najwyższych kosztach życia</button>-->
+<!--    </form>-->
+<!--    <form action="/lowest_cost" method="POST">-->
+<!--        <button type="submit">Pokaż najbardziej ekonomiczne miasto w stanie</button>-->
+<!--    </form>-->
+<!--    <form action="/average_cost" method="POST">-->
+<!--            <button type="submit">Sprawdź średni koszt życia</button>-->
+<!--    </form>-->
 </div>
 <br>
 {% endblock %}
