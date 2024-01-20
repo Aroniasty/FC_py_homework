@@ -2,23 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista rozwijana z danymi z bazy danych</title>
+    <title>{% block title %} {% endblock %} - FlaskApp</title>
+    <style>
+        .title {
+            margin: 5px;
+        }
+
+        .content {
+            margin: 5px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .student {
+            flex: 20%;
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3;
+            inline-size: 100%;
+        }
+
+        .bio {
+            padding: 10px;
+            margin: 5px;
+            background-color: #ffffff;
+            color: #004835;
+        }
+
+        .name a {
+            color: #00a36f;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lista rozwijana z danymi z bazy danych</h1>
-
-    <form action="/result" method="POST">
-        <label for="dropdown">Wybierz stan:</label>
-        <select id="dropdown" name="state">
-            {% for row in data %}
-                <option value="{{ row.state }}">{{ row.state }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Pokaż wyniki</button>
-    </form>
-
-    <a href="/top_cities"><button>Top 3 Miasta</button></a>
-    <a href="/lowest_cost_city"><button>Najniższy Koszt Życia</button></a>
+    <nav>
+        <a href="{{ url_for('index') }}">FlaskApp</a>
+        <a href="#">Create</a>
+        <a href="#">About</a>
+    </nav>
+    <hr>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
 </body>
 </html>

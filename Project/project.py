@@ -22,32 +22,41 @@ def main():
 def result():
     selected_state = request.form.get('state')
     total_cost = get_total_cost_for_state(selected_state)
+    areaname = get_areaname_for_state(selected_state)
     # pokazuje tylko 1 wartość na liście z wybranego stanu
-    return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost)
+    return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost, areaname=areaname)
 
 @app.route('/bootstrap', methods=['POST'])
 def bootstrap():
     selected_state = request.form.get('state')
     total_cost = get_total_cost_for_state(selected_state)
-    # pokazuje tylko 1 wartość na liście z wybranego stanu
-    return render_template('bootstrap.html', selected_state=selected_state, total_cost=total_cost)
+    areaname = get_areaname_for_state(selected_state)
+    # pokazuje tylko 1 wartość na liście z wybranego stanu,
+    # Jak utworzyć zapytanie, żeby po wybraniu stanu z listy rozwijanej uwzględniał wszystkie miasta w danym stanie
+    # i zwracał ja na podstawie kosztów utrzymania.
+    return render_template('bootstrap.html', selected_state=selected_state, total_cost=total_cost, areaname=areaname)
 
 
 @app.route('/most_expensive', methods=['POST'])
 def most_expensive():
     selected_state = request.form.get('state')
+    areaname = get_areaname_for_state(selected_state)
     most_expensive = get_most_expensive(selected_state)
-    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive)
+    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive, areaname=areaname)
 
 @app.route('/lowest_cost', methods=['POST'])
 def lowest_cost():
     selected_state = request.form.get('state')
-    lowest_cost = get_bootstrap(selected_state)
-    return render_template("lowest_cost.html", selected_state=selected_state, lowest_cost=lowest_cost)
+    areaname = get_areaname_for_state(selected_state)
+    lowest_cost = get_lowest_cost(selected_state)
+    return render_template("lowest_cost.html", selected_state=selected_state, lowest_cost=lowest_cost, areaname=areaname)
 
 @app.route('/average_cost')
 def average_cost():
-    return render_template("average_cost.html")
+    selected_state = request.form.get('state')
+    areaname = get_areaname_for_state(selected_state)
+    average_cost = get_average_cost(selected_state)
+    return render_template("average_cost.html", selected_state=selected_state, average_cost=average_cost, areaname=areaname)
 
 @app.route('/about')
 def about():
@@ -70,29 +79,28 @@ def get_total_cost_for_state(selected_state):
     total_cost = cost_of_living_us.query.filter_by(state=selected_state).first().total_cost
     return total_cost
 
-def get_total_cost_for_state(selected_state):
-    total_cost = cost_of_living_us.query.filter_by(state=selected_state).first().total_cost
-    return total_cost
-
+def get_areaname_for_state(selected_state):
+    areaname = cost_of_living_us.query.filter_by(state=selected_state).first().areaname
+    return areaname
 
 def get_most_expensive(selected_state):
     most_expensive = cost_of_living_us.query.filter_by(state=selected_state).order_by(cost_of_living_us.total_cost.desc()).limit(3).all()
     return most_expensive
 
 def get_lowest_cost(selected_state):
-    lowest_cost_city = cost_of_living_us.query.filter_by(state=selected_state).last().total_cost
+    lowest_cost_city = cost_of_living_us.query.filter_by(state=selected_state).order_by(cost_of_living_us.total_cost.asc()).limit(1).all()
     return lowest_cost_city
 
-# def get_average_cost():
-#     average_cost = cost_of_living_us.query.avg()
-#     return average_cost
+def get_average_cost(selected_state):
+    average_cost = cost_of_living_us.query.filter_by(state=selected_state).func.avg(cost_of_living_us.total_cost).all()
+    return average_cost
 
 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
         data = db.session.query(cost_of_living_us).distinct().all()
-        if len(data) == 1000:
+        if len(data) == 100:
             data_from_csv = read_data_from_csv()
             for row in data_from_csv:
                 data_row = cost_of_living_us(
