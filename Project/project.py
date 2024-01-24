@@ -103,12 +103,12 @@ def get_average_cost(selected_state):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-        get_average_cost("AL")
+        # get_average_cost("AL")
         data = db.session.query(cost_of_living_us).distinct().all()
-        if len(data) == 6:
+        if len(data) == 0:
             data_from_csv = read_data_from_csv()
             for row in data_from_csv:
-                print(row)
+                # print(row)
                 data_row = cost_of_living_us(
                     state=row[1],
                     areaname=row[3],
