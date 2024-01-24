@@ -1,0 +1,19 @@
+h1 {
+    color: rgb(60, 179, 113);
+}
+
+body {
+    margin:0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding 20px;
+    border: 1px solid black;
+    height: 20hv
+}

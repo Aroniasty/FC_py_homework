@@ -1,0 +1,48 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+{% extends "base.html" %}
+
+{% block content %}
+    <title>Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <table class="table">
+  <thead>
+    <tr class="table-secondary">
+      <th scope="col">#</th>
+      <th scope="col">State</th>
+      <th scope="col">City</th>
+      <th scope="col">Cost of living</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in most_expensive %}
+    <tr>
+      <th scope="row">1</th>
+      <td><p>{{ item.state }}</p></td>
+      <td><p>{{ item.areaname }}</p></td>
+      <td><p>{{ item.total_cost }}</p></td>
+    </tr>
+    {% endfor %}
+<!--    <tr>-->
+<!--      <th scope="row">2</th>-->
+<!--      <td><p>{{ selected_state }}</p></td>-->
+<!--      <td><p>{{ areaname }}</p></td>-->
+<!--      <td><p>{{ most_expensive }}</p></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th scope="row">3</th>-->
+<!--      <td><p>{{ selected_state }}</p></td>-->
+<!--      <td><p>{{ areaname }}</p></td>-->
+<!--      <td><p>{{ most_expensive }}</p></td>-->
+<!--    </tr>-->
+  </tbody>
+</table>
+<!--<button type="button" class="btn btn-secondary">Primary</button>-->
+</body>
+{% endblock %}
