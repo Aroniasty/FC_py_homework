@@ -1,1 +1,0 @@
-python accountant.py saldo -1000 podatek
