@@ -38,12 +38,12 @@ def lowest_cost():
     lowest_cost = get_lowest_cost(selected_state)
     return render_template("lowest_cost.html", selected_state=selected_state, lowest_cost=lowest_cost, areaname=areaname)
 
-@app.route('/average_cost')
+@app.route('/average_cost', methods=['GET', 'POST'])
 def average_cost():
     selected_state = request.form.get('state')
-    areaname = get_areaname_for_state(selected_state)
+    # areaname = get_areaname_for_state(selected_state)
     average_cost = get_average_cost(selected_state)
-    return render_template("average_cost.html", selected_state=selected_state, average_cost=average_cost, areaname=areaname)
+    return render_template("average_cost.html", selected_state=selected_state, average_cost=average_cost)
 
 @app.route('/about')
 def about():
@@ -84,6 +84,11 @@ def get_average_cost(selected_state):
         total_cost += city.total_cost
     return total_cost/len(average_cost)
 
+# def get_average_cost(selected_state):
+#     average_cost = cost_of_living_us.query.filter_by(state=selected_state).all()
+#     total_cost = sum(city.total_cost for city in average_cost)
+#     average = total_cost / len(average_cost) if len(average_cost) > 0 else 0
+#     return '{:.2f}'.format(average)
 
 if __name__ == "__main__":
     with app.app_context():
