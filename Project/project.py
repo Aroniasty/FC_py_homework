@@ -5,9 +5,7 @@ from csv_reader import read_data_from_csv
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///project.db"
-# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test.db"
-app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test_2.db"
-# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///cost_of_living_us.db"
+app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test.db"
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -15,35 +13,23 @@ db = SQLAlchemy(app)
 @app.route('/')
 def main():
     data = get_unique_states()
-    # nie stosuje ustawień z css i base.html
     return render_template('main.html', data=data)
 
-@app.route('/total_cost', methods=['POST'])
-def result():
-    selected_state = request.form.get('state')
-    total_cost = get_total_cost_for_state(selected_state)
-    areaname = get_areaname_for_state(selected_state)
-    # pokazuje tylko 1 wartość na liście z wybranego stanu
-    return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost, areaname=areaname)
-
-@app.route('/bootstrap', methods=['POST'])
-def bootstrap():
-    selected_state = request.form.get('state')
-    total_cost = get_total_cost_for_state(selected_state)
-    areaname = get_areaname_for_state(selected_state)
-    # pokazuje tylko 1 wartość na liście z wybranego stanu,
-    # Jak utworzyć zapytanie, żeby po wybraniu stanu z listy rozwijanej uwzględniał wszystkie miasta w danym stanie
-    # i zwracał ja na podstawie kosztów utrzymania.
-    return render_template('bootstrap.html', selected_state=selected_state, total_cost=total_cost, areaname=areaname)
-
+# @app.route('/total_cost', methods=['POST'])
+# def result():
+#     selected_state = request.form.get('state')
+#     total_cost = get_total_cost_for_state(selected_state)
+#     areaname = get_areaname_for_state(selected_state)
+#     # pokazuje tylko 1 wartość na liście z wybranego stanu
+#     return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost, areaname=areaname)
 
 @app.route('/most_expensive', methods=['POST'])
 def most_expensive():
     selected_state = request.form.get('state')
-    total_cost = get_total_cost_for_state(selected_state)
+    # total_cost = get_total_cost_for_state(selected_state)
     areaname = get_areaname_for_state(selected_state)
     most_expensive = get_most_expensive(selected_state)
-    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive, areaname=areaname, total_cost=total_cost)
+    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive, areaname=areaname)
 
 @app.route('/lowest_cost', methods=['POST'])
 def lowest_cost():
@@ -62,7 +48,6 @@ def average_cost():
 @app.route('/about')
 def about():
     return render_template("about.html")
-
 
 class cost_of_living_us(db.Model):
     __tablename__ = "cost_of_living_us"
@@ -89,8 +74,8 @@ def get_most_expensive(selected_state):
     return most_expensive
 
 def get_lowest_cost(selected_state):
-    lowest_cost_city = cost_of_living_us.query.filter_by(state=selected_state).order_by(cost_of_living_us.total_cost.asc()).limit(1).all()
-    return lowest_cost_city
+    lowest_cost = cost_of_living_us.query.filter_by(state=selected_state).order_by(cost_of_living_us.total_cost.asc()).limit(1).all()
+    return lowest_cost
 
 def get_average_cost(selected_state):
     average_cost = cost_of_living_us.query.filter_by(state=selected_state).all()
@@ -113,8 +98,6 @@ if __name__ == "__main__":
                     state=row[1],
                     areaname=row[3],
                     total_cost=float(row[13]),
-                    # total_cost=round(float(row[13]), 2),
-                    # nie działa float
                     median_family_income=float(row[14]) if row[14] else 0
                     # median_family_income=round(float(row[14]), 2)
                 )
