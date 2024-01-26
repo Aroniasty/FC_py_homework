@@ -1,7 +1,0 @@
-case_id,state,isMetro,areaname,county,family_member_count,housing_cost,food_cost,transportation_cost,healthcare_cost,other_necessities_cost,childcare_cost,taxes,total_cost,median_family_income
-1,AL,True,"Montgomery, AL MSA",Autauga County,1p0c,8505.72876,3454.91712,10829.16876,5737.47984,4333.81344,0.0,6392.94504,39254.0532,73010.4140625
-1,AL,True,"Montgomery, AL MSA",Autauga County,1p1c,12067.5024,5091.70788,11588.19288,8659.5564,6217.45896,6147.8298,7422.07836,57194.3256,73010.4140625
-2,AL,True,"Daphne-Fairhope-Foley, AL MSA",Baldwin County,2p2c,11064.0,10733.60664,14768.1084,16888.014,7898.13276,15348.1992,10867.22676,87567.2868,77884.7578125
-2,AL,True,"Daphne-Fairhope-Foley, AL MSA",Baldwin County,2p3c,14988.0,13104.918,15071.3112,19738.5408,10179.1728,18236.04,13172.8524,104490.8316,77884.7578125
-3,AL,False,"Barbour County, AL",Barbour County,1p0c,5856.0,3237.03924,10890.72876,5686.79004,3294.7668,0.0,5458.2774,34423.602,42822.75390625
-3,AL,False,"Barbour County, AL",Barbour County,2p4c,9672.0,13976.622,13639.788,22610.2476,8568.82836,13736.3484,8253.5544,90457.3884,42822.75390625
