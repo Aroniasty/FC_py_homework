@@ -15,13 +15,6 @@ def main():
     data = get_unique_states()
     return render_template('main.html', data=data)
 
-# @app.route('/total_cost', methods=['POST'])
-# def result():
-#     selected_state = request.form.get('state')
-#     total_cost = get_total_cost_for_state(selected_state)
-#     areaname = get_areaname_for_state(selected_state)
-#     # pokazuje tylko 1 wartość na liście z wybranego stanu
-#     return render_template('total_cost.html', selected_state=selected_state, total_cost=total_cost, areaname=areaname)
 
 @app.route('/most_expensive', methods=['POST'])
 def most_expensive():
@@ -29,7 +22,8 @@ def most_expensive():
     # total_cost = get_total_cost_for_state(selected_state)
     areaname = get_areaname_for_state(selected_state)
     most_expensive = get_most_expensive(selected_state)
-    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive, areaname=areaname)
+    average_cost = get_average_cost(selected_state)
+    return render_template("most_expensive.html", selected_state=selected_state, most_expensive=most_expensive, areaname=areaname, average_cost=average_cost)
 
 @app.route('/lowest_cost', methods=['POST'])
 def lowest_cost():
@@ -38,12 +32,22 @@ def lowest_cost():
     lowest_cost = get_lowest_cost(selected_state)
     return render_template("lowest_cost.html", selected_state=selected_state, lowest_cost=lowest_cost, areaname=areaname)
 
-@app.route('/average_cost', methods=['GET', 'POST'])
+@app.route('/average_cost', methods=['POST'])
 def average_cost():
     selected_state = request.form.get('state')
-    # areaname = get_areaname_for_state(selected_state)
     average_cost = get_average_cost(selected_state)
     return render_template("average_cost.html", selected_state=selected_state, average_cost=average_cost)
+
+@app.route('/all_data', methods=['POST'])
+def all_data():
+    selected_state = request.form.get('state')
+    # total_cost = get_total_cost_for_state(selected_state)
+    areaname = get_areaname_for_state(selected_state)
+    most_expensive = get_most_expensive(selected_state)
+    average_cost = get_average_cost(selected_state)
+    lowest_cost = get_lowest_cost(selected_state)
+    return render_template("all_data.html", selected_state=selected_state, most_expensive=most_expensive, areaname=areaname, average_cost=average_cost, lowest_cost=lowest_cost)
+
 
 @app.route('/about')
 def about():
@@ -84,11 +88,9 @@ def get_average_cost(selected_state):
         total_cost += city.total_cost
     return total_cost/len(average_cost)
 
-# def get_average_cost(selected_state):
-#     average_cost = cost_of_living_us.query.filter_by(state=selected_state).all()
-#     total_cost = sum(city.total_cost for city in average_cost)
-#     average = total_cost / len(average_cost) if len(average_cost) > 0 else 0
-#     return '{:.2f}'.format(average)
+# O ile procent powyzej fredniej wynosza koszty zycia
+# w tych miastach w poróunaniu do Srednich kosztów zycia v danym stanie
+
 
 if __name__ == "__main__":
     with app.app_context():
