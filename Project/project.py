@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from csv_reader import read_data_from_csv
-import datetime
 
 
 app = Flask(__name__)
@@ -14,8 +13,7 @@ db = SQLAlchemy(app)
 @app.route('/')
 def main():
     data = get_unique_states()
-    current_year = datetime.datetime.now().year
-    return render_template('main.html', data=data, current_year=current_year)
+    return render_template('main.html', data=data)
 
 
 @app.route('/most_expensive', methods=['POST'])
