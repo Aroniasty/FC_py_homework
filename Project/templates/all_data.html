@@ -29,7 +29,7 @@
       <td><p>{{ item.areaname }}</p></td>
       <td><p>$ {{ '{:,.2f}'.format(item.total_cost) }}</p></td>
 <!--      <td><p>$ {{ '{:,.2f}'.format(average_cost) }}</p></td>-->
-      <td><p>$ {{ '{:,.2f}'.format(average_cost/item.total_cost * 100) }}%</p></td>
+      <td><p>{{ '{:,.2f}'.format(average_cost/item.total_cost * 100) }}%</p></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -39,10 +39,10 @@
   {% for item in lowest_cost %}
   <a href="#" class="list-group-item list-group-item-action"><span style="font-weight: bold">Najbardziej ekonomiczne miasto w tym stanie:</a>
   <a href="#" class="list-group-item list-group-item-action list-group-item-success">{{ item.areaname }}</a>
-  <a href="#" class="list-group-item list-group-item-action list-group-item-success">$ {{ '{:,.2f}'.format(item.total_cost) }}</a>
+  <a href="#" class="list-group-item list-group-item-action list-group-item-success fw-bold">$ {{ '{:,.2f}'.format(item.total_cost) }}</a>
   {% endfor %}
 </div>
 <br>
-<a href="/" class="btn btn-light">Powrót</a>
+<a href="/" class="btn btn-secondary">Powrót</a>
 </body>
 {% endblock %}

@@ -6,7 +6,7 @@
 <link href="style.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<h1>Projekt: Porównanie kosztów życia w różnych stanach USA</h1>
+<h1 class="text-center">Projekt: Porównanie kosztów życia w różnych stanach USA</h1>
 <br>
 <div class="container">
     <form method="POST">
@@ -19,12 +19,17 @@
             </select>
 <br>
 <!--        <button type="submit" formaction="total_cost">Całkowity koszt życia</button>-->
-        <button type="submit" class="btn btn-success" formaction="most_expensive">Pokaż 3 miasta o najwyższych kosztach życia</button>
+        <button type="submit" class="btn btn-danger" formaction="most_expensive">Pokaż 3 miasta o najwyższych kosztach życia</button>
         <button type="submit" class="btn btn-success" formaction="lowest_cost">Pokaż najbardziej ekonomiczne miasto w stanie</button>
-        <button type="submit" class="btn btn-success" formaction="average_cost">Sprawdź średni koszt życia</button>
-        <button type="submit" class="btn btn-success" formaction="all_data">Podsumowanie</button>
+        <button type="submit" class="btn btn-warning" formaction="average_cost">Pokaż średni koszt życia</button>
+        <br>
+        <br>
+            <button type="submit" class="btn btn-secondary" formaction="all_data">Pokaż całe podsumowanie</button>
     </form>
 </div>
 <br>
+<div class="position-absolute bottom-0 start-50 translate-middle-x">
+    <p class="link-secondary">Aktualny rok: {{ current_year }}</p>
+</div>
 <br>
 {% endblock %}

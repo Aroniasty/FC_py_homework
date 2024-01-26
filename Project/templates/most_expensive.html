@@ -29,12 +29,12 @@
       <td><p>{{ item.areaname }}</p></td>
       <td><p>$ {{ '{:,.2f}'.format(item.total_cost) }}</p></td>
 <!--      <td><p>$ {{ '{:,.2f}'.format(average_cost) }}</p></td>-->
-      <td><p>$ {{ '{:,.2f}'.format(average_cost/item.total_cost * 100) }}%</p></td>
+      <td><p>{{ '{:,.2f}'.format(average_cost/item.total_cost * 100) }}%</p></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 <br>
-<a href="/" class="btn btn-light">Powrót</a>
+<a href="/" class="btn btn-secondary">Powrót</a>
 </body>
 {% endblock %}

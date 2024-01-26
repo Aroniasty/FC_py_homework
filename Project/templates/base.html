@@ -8,14 +8,19 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+<div class="p-3 mb-2 bg-light text-dark">
     <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
+        <a href="/" class="link-info">Home</a>
+        <a href="/about" class="link-info">About</a>
 <!--        <h1>Projekt: Porównanie kosztów życia w różnych stanach USA</h1>-->
         <link href="style.css" rel="stylesheet">
     </nav>
+<!--    <div class="p-3 mb-2 bg-light text-dark">-->
     {% block content %}
     {% endblock %}
+</div>
+<!--    <a href="/" class="btn btn-light">Powrót</a>-->
+<!--    </div>-->
 <!--<h2>Test</h2>-->
 <!--<a href="/" class="btn btn-secondary">Powrót</a>-->
 </body>

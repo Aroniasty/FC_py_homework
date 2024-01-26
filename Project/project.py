@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from csv_reader import read_data_from_csv
+import datetime
 
 
 app = Flask(__name__)
-# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///project.db"
-app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test.db"
+app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///project.db"
+# app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///test.db"
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -13,7 +14,8 @@ db = SQLAlchemy(app)
 @app.route('/')
 def main():
     data = get_unique_states()
-    return render_template('main.html', data=data)
+    current_year = datetime.datetime.now().year
+    return render_template('main.html', data=data, current_year=current_year)
 
 
 @app.route('/most_expensive', methods=['POST'])
@@ -110,10 +112,6 @@ if __name__ == "__main__":
                 )
                 db.session.add(data_row)
             db.session.commit()
-        # test = Data(state="SS", areaname="AA", total_cost="1111.11", median_family_income="2222.22")
-        # test = data_row
-        # db.session.add_all([test])
-        # db.session.commit()
-        # kod do obsługi tabeli
+
     app.run(debug=True)
 
