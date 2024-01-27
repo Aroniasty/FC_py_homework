@@ -10,9 +10,22 @@ lista_wychowawcow = []
 lista_przedmiotow = []
 
 
-def znajdz_uzytkownika_w_nauczycielach(dane_uzytkownika):
+def znajdz_nauczycielach_w_klasach_nauczycieli(dane_uzytkownika):
+    lista_nauczycieli = []
+    lista_wychowawcow_klasy = []
+    lista_klas = []
+    klasy_wychowawcy = []
+
+    for nauczyciel in lista_nauczycieli:
+        if nauczyciel.imie == imie and nauczyciel.nazwisko == nazwisko:
+            lista_klas
+
+    for wychowawca in lista_wychowawcow:
+        if wychowawca.imie == imie and wychowawca.nazwisko == nazwisko:
+            klasy_wychowawcy = wychowawca.klasy
+
     print(argumenty)
-    print("Kod do znalezienia danych z argumentów systemowych wśród uczniów")
+    print("wypisz wychowawców wszystkich klas, z którym ma zajęcia nauczyciel")
 
 def znajdz_wychowawce_i_uczniow_w_klasie(numer_klasy):
     lista_uczniow_w_klasie = []
